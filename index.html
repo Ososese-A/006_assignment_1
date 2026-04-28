@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ososese | Computer Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8D5A3;
+      --navy: #0D1B2A;
+      --navy-mid: #1A2E42;
+      --navy-light: #243B55;
+      --cream: #F7F4EF;
+      --cream-dark: #EDE8DE;
+      --text-dark: #0D1B2A;
+      --text-mid: #3A4F63;
+      --text-muted: #7A8FA0;
+      --white: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      border: 40px solid rgba(201,168,76,0.08);
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: 60px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      border: 25px solid rgba(201,168,76,0.06);
+    }
+
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 40px 50px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .avatar-wrap {
+      flex: 0 0 120px;
+    }
+
+    .avatar {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      object-fit: cover;
+      display: block;
+      background: var(--navy-light);
+    }
+
+    .avatar-initials {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      background: var(--navy-light);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .header-text { flex: 1; }
+
+    .header-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .title-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 5px 14px;
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+
+    .header-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .header-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ── GOLD DIVIDER ── */
+    .gold-bar {
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 60%, transparent 100%);
+    }
+
+    /* ── LAYOUT ── */
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 50px 40px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar { display: flex; flex-direction: column; gap: 30px; }
+
+    .side-card {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 24px;
+      border-top: 3px solid var(--gold);
+      box-shadow: 0 2px 12px rgba(13,27,42,0.06);
+    }
+
+    .side-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.78rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 0.88rem;
+      color: var(--text-mid);
+    }
+
+    .contact-icon {
+      width: 28px; height: 28px;
+      border-radius: 4px;
+      background: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      flex: 0 0 28px;
+      font-size: 13px;
+    }
+
+    .skill-bar-wrap { margin-bottom: 12px; }
+
+    .skill-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      margin-bottom: 5px;
+    }
+
+    .skill-bar {
+      height: 5px;
+      background: var(--cream-dark);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--navy) 0%, var(--gold) 100%);
+      border-radius: 99px;
+    }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: 7px; }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 2px;
+      background: var(--cream);
+      color: var(--text-mid);
+      border: 1px solid var(--cream-dark);
+      font-weight: 500;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .main { display: flex; flex-direction: column; gap: 32px; }
+
+    .section {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 28px 30px;
+      box-shadow: 0 2px 12px rgba(13,27,42,0.06);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--cream-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 4px; height: 22px;
+      background: var(--gold);
+      border-radius: 2px;
+      display: block;
+    }
+
+    .about-text {
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+
+    /* Timeline items */
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      margin-bottom: 22px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--cream-dark);
+      position: relative;
+    }
+
+    .timeline-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .item-title {
+      font-weight: 500;
+      font-size: 0.97rem;
+      color: var(--navy);
+      margin-bottom: 3px;
+    }
+
+    .item-org {
+      font-size: 0.83rem;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .item-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .item-date {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      white-space: nowrap;
+      background: var(--cream);
+      padding: 3px 9px;
+      border-radius: 2px;
+      height: fit-content;
+      border: 1px solid var(--cream-dark);
+    }
+
+    /* Homework grid */
+    .hw-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
+    }
+
+    .hw-card {
+      background: var(--cream);
+      border: 1px solid var(--cream-dark);
+      border-radius: 5px;
+      padding: 16px 12px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .hw-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(13,27,42,0.08);
+    }
+
+    .hw-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .hw-link {
+      display: inline-block;
+      background: var(--navy);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      padding: 5px 12px;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+
+    .hw-link:hover { background: var(--navy-light); }
+
+    .hw-coming {
+      display: inline-block;
+      background: var(--cream-dark);
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      padding: 5px 12px;
+      border-radius: 2px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 24px;
+      font-size: 0.78rem;
+      letter-spacing: 0.5px;
+    }
+
+    footer span { color: var(--gold); }
+
+    @media (max-width: 720px) {
+      .page { grid-template-columns: 1fr; padding: 30px 20px; }
+      .header-inner { flex-direction: column; align-items: flex-start; padding: 40px 24px 36px; }
+      .header-text h1 { font-size: 2rem; }
+      .hw-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="avatar-wrap">
+  <img src="assets\se.jpg" alt="Profile Photo" class="avatar">
+</div>
+
+    <div class="header-text">
+      <div class="title-tag">Computer Engineer</div>
+      <h1>Akhideno Ososese</h1>
+      <div class="header-meta">
+        <span>STD.NUMBER: 20225181</span>
+        <span> 4th Year Student</span>
+        <span>✉ ososese@email.com</span>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="gold-bar"></div>
+
+<div class="page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="side-card">
+      <h3>Contact</h3>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>Nicosia, North Cyprus</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉</div>
+        <div>ososese@email.com</div>
+      </div>
+      
+    </div>
+
+    <div class="side-card">
+      <h3>Technical Skills</h3>
+      <div class="skill-bar-wrap">
+        <div class="skill-label"><span>JavaScript</span><span>85%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-bar-wrap">
+        <div class="skill-label"><span>Python</span><span>80%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-bar-wrap">
+        <div class="skill-label"><span>HTML / CSS</span><span>90%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-bar-wrap">
+        <div class="skill-label"><span>Dart / Flutter</span><span>70%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+      </div>
+      <div class="skill-bar-wrap">
+        <div class="skill-label"><span>C / C++</span><span>65%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+      </div>
+    </div>
+
+    <div class="side-card">
+      <h3>Interests</h3>
+      <div class="tag-list">
+        <span class="tag">Cybersecurity</span>
+        <span class="tag">Web Dev</span>
+        <span class="tag">Mobile Dev</span>
+        <span class="tag">UX Design</span>
+        <span class="tag">AI & ML</span>
+        <span class="tag">Networking</span>
+      </div>
+    </div>
+
+    <div class="side-card">
+      <h3>Languages</h3>
+      <div class="skill-bar-wrap">
+        <div class="skill-label"><span>English</span><span>Fluent</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      </div>
+      
+      <div class="skill-bar-wrap">
+        <div class="skill-label"><span>Turkish</span><span>Basic</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:35%"></div></div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <div class="section">
+      <div class="section-title">About Me</div>
+      <p class="about-text">
+        I am a Computer Engineering student in my 4th year, passionate about building clean, accessible, and user-centric software. My work spans front-end web development, mobile-first design, and emerging technologies in AI and cybersecurity. I bring a detail-oriented mindset and a strong drive to solve real-world problems through code.
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Education</div>
+      <div class="timeline-item">
+        <div>
+          <div class="item-title">Bachelor of Computer Engineering</div>
+          <div class="item-org">Near East University — Nicosia, North Cyprus</div>
+          <div class="item-desc">Focus on software development, AI technologies, web systems, and computer networks.</div>
+        </div>
+        <div class="item-date">2022 – Present</div>
+      </div>
+      
+    </div>
+
+    <div class="section">
+      <div class="section-title">Experience</div>
+     
+      <div class="timeline-item">
+        <div>
+          <div class="item-title">Web Development Intern</div>
+          <div class="item-org">Company / Organization Name</div>
+          <div class="item-desc">Assisted in developing and maintaining responsive web applications using HTML, CSS, and JavaScript.</div>
+        </div>
+        <div class="item-date">2023</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Homework Assignments</div>
+      <div class="hw-grid">
+        <div class="hw-card">
+          <div class="hw-num">HW #2</div>
+          <a href="hw2/006-HW-2.pdf" class="hw-link">VIEW →</a>
+        </div>
+        <div class="hw-card">
+          <div class="hw-num">HW #3</div>
+          <a href="hw3/006-HW-3.pdf" class="hw-link">VIEW →</a>
+        </div>
+        <div class="hw-card">
+          <div class="hw-num">HW #4</div>
+          <a href="hw4/006-HW-4.pdf" class="hw-link">VIEW →</a>
+        </div>
+        <div class="hw-card">
+          <div class="hw-num">HW #5</div>
+          <a href="hw5/006-HW-5.pdf" class="hw-link">VIEW →</a>
+        </div>
+        <div class="hw-card">
+          <div class="hw-num">HW #6</div>
+          <a href="hw6/006-HW-6.pdf" class="hw-link">VIEW →</a>
+        </div>
+        <div class="hw-card">
+          <div class="hw-num">HW #7</div>
+          <a href="hw7/006-HW-7.pdf" class="hw-link">VIEW →</a>
+        </div>
+        <div class="hw-card">
+          <div class="hw-num">HW #8</div>
+          <span class="hw-coming">SOON</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <p><span>Ososese</span> &nbsp;·&nbsp; Computer Engineering Student &nbsp;·&nbsp; 4th Year &nbsp;·&nbsp; AI & Web Development</p>
+</footer>
+
+</body>
+</html>
